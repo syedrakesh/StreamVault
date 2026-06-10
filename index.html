@@ -1767,6 +1767,15 @@ body, nav, footer, .modal, .toast {
         </div>
       </div>
 
+      <!-- Stream URL -->
+      <div class="setting-group" style="display: none;">
+        <div class="setting-label">Stream URL</div>
+        <div class="url-input-wrap">
+          <input type="url" class="url-input" id="stream-url-input" placeholder="">
+          <button class="url-apply-btn" id="url-apply-btn">Apply</button>
+        </div>
+      </div>
+
       <!-- Toggles -->
       <div class="setting-group">
         <div class="setting-label">Preferences</div>
@@ -2520,7 +2529,7 @@ $('url-apply-btn').addEventListener('click', () => {
   state.streamUrl = url;
   localStorage.setItem('sv_stream_url', url);
   closeSettings();
-  showToast('Stream URL updated | loading...', 'success', 'fa-link');
+  showToast('Stream URL updated — loading...', 'success', 'fa-link');
   initStream(url);
 });
 urlInput.addEventListener('keydown', e => { if (e.key === 'Enter') $('url-apply-btn').click(); });

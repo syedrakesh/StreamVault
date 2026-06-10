@@ -2631,6 +2631,78 @@ $('stream-name-display').textContent = STREAM_CONFIG.title;
    ============================================================ */
 playerWrapper.addEventListener('mouseenter', showControls);
 
+
+(function () {
+    // Disable right-click
+    document.addEventListener('contextmenu', e => e.preventDefault());
+
+    // Disable text selection
+    document.addEventListener('selectstart', e => e.preventDefault());
+
+    // Disable drag
+    document.addEventListener('dragstart', e => e.preventDefault());
+
+    // Block common DevTools shortcuts
+    document.addEventListener('keydown', function(e) {
+        const key = e.key.toUpperCase();
+
+        if (
+            key === 'F12' ||
+            (e.ctrlKey && e.shiftKey && ['I', 'J', 'C', 'K'].includes(key)) ||
+            (e.ctrlKey && ['U', 'S'].includes(key))
+        ) {
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        }
+    });
+
+    // Detect DevTools
+    let devtools = false;
+    setInterval(() => {
+        if (
+            window.outerWidth - window.innerWidth > 160 ||
+            window.outerHeight - window.innerHeight > 160
+        ) {
+            if (!devtools) {
+                devtools = true;
+                document.body.innerHTML = `
+                    <div style="
+                        display:flex;
+                        justify-content:center;
+                        align-items:center;
+                        height:100vh;
+                        font-family:Arial,sans-serif;
+                        font-size:32px;
+                        background:#000;
+                        color:#fff;">
+                        Access Denied
+                    </div>`;
+            }
+        } else {
+            devtools = false;
+        }
+    }, 500);
+
+    // Disable copy
+    document.addEventListener('copy', e => e.preventDefault());
+
+    // Disable cut
+    document.addEventListener('cut', e => e.preventDefault());
+
+    // Disable paste
+    document.addEventListener('paste', e => e.preventDefault());
+
+    // Clear console repeatedly
+    setInterval(() => {
+        console.clear();
+    }, 1000);
+
+    // Console warning
+    console.log("%cSTOP!", "color:red;font-size:50px;font-weight:bold;");
+    console.log("%cThis area is for developers only.", "font-size:20px;");
+})();
+
 </script>
 </body>
 </html>

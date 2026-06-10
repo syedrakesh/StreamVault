@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>StreamVault — Live</title>
+<title>StreamVault | Live</title>
 <meta name="description" content="Premium live streaming platform">
 
 <!-- Fonts -->
@@ -22,7 +22,7 @@
 
 <style>
 /* ============================================================
-   STREAM CONFIGURATION — Change URL here
+   STREAM CONFIGURATION | Change URL here
    ============================================================ */
 /* Stream URL is set in the JS section below */
 
@@ -435,7 +435,7 @@ main {
 }
 
 /* ============================================================
-   PLAYER WRAPPER — cinematic ambient glow
+   PLAYER WRAPPER | cinematic ambient glow
    ============================================================ */
 .player-outer {
   position: relative;
@@ -1825,7 +1825,7 @@ body, nav, footer, .modal, .toast {
      ============================================================ -->
 <script>
 /* ============================================================
-   STREAM CONFIGURATION — Change the URL here
+   STREAM CONFIGURATION | Change the URL here
    ============================================================ */
 const STREAM_CONFIG = {
   url: "https://d2w9q46ikgrcwx.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-of5cbk3sav3w5/v1/sysdata_s_p_a_fifa_7/samsungheadend_us/latest/main/hls/playlist.m3u8",
@@ -2028,7 +2028,7 @@ function initStream(url) {
           state.playing = true;
           updatePlayUI();
         }).catch(() => {
-          // Autoplay blocked — show play button
+          // Autoplay blocked | show play button
           centerPlayBtn.classList.add('show');
           showToast('Click play to start the stream', 'info', 'fa-play');
         });
@@ -2040,7 +2040,7 @@ function initStream(url) {
     hls.on(Hls.Events.ERROR, (_, data) => {
       if (data.fatal) {
         updateStatus(false, 'OFFLINE');
-        showToast('Stream error — retrying...', 'warn', 'fa-triangle-exclamation');
+        showToast('Stream error | retrying...', 'warn', 'fa-triangle-exclamation');
         setTimeout(() => hls.startLoad(), 3000);
       }
     });
@@ -2529,7 +2529,7 @@ $('url-apply-btn').addEventListener('click', () => {
   state.streamUrl = url;
   localStorage.setItem('sv_stream_url', url);
   closeSettings();
-  showToast('Stream URL updated — loading...', 'success', 'fa-link');
+  showToast('Stream URL updated | loading...', 'success', 'fa-link');
   initStream(url);
 });
 urlInput.addEventListener('keydown', e => { if (e.key === 'Enter') $('url-apply-btn').click(); });

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>DASH Player</title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.11/shaka-player.compiled.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+    }
+
+    video {
+      width: 100vw;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+
+<video id="video" controls autoplay></video>
+
+<script>
+async function init() {
+  shaka.polyfill.installAll();
+
+  if (!shaka.Player.isBrowserSupported()) {
+    console.error('Browser not supported');
+    return;
+  }
+
+  const video = document.getElementById('video');
+  const player = new shaka.Player(video);
+
+  player.addEventListener('error', event => {
+    console.error('Shaka Error:', event.detail);
+  });
+
+  try {
+    player.configure({
+      drm: {
+        clearKeys: {
+          '09453ce820d65fbc675de3185f9e454c':
+          '98cff9600995fa381c76fdacf3c7edae'
+        }
+      }
+    });
+
+    await player.load(
+      'https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/awxnrqkbo5/out/v1/716529a4091947b0877e6cb80dbd6ccb/cenc.mpd'
+    );
+
+    console.log('Video loaded successfully');
+  } catch (error) {
+    console.error('Load failed:', error);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
+
+</body>
+</html>

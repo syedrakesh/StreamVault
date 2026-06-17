@@ -1057,16 +1057,11 @@
           <div class="player-wrap" id="player-wrap" role="region" aria-label="Video player">
 
             <!-- Video element -->
-            <iframe
-              id="stream-player"
-              src="https://kickbd.org/source/fox_fifa"
-              width="100%"
-              height="100%"
-              frameborder="0"
-              allowfullscreen
-              allow="autoplay; fullscreen"
-              style="width:100%;height:100%;border:none;">
-            </iframe>
+            <video id="stream-player"
+              playsinline
+              aria-label="Live stream video"
+              tabindex="0">
+            </video>
 
             <!-- Custom cursor -->
             <div id="player-cursor" aria-hidden="true"></div>
